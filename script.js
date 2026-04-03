@@ -1,10 +1,11 @@
 /* --- CONFIGURATION --- */
 const MY_NAME = "Shohan"; // Change this to your actual name
 const HER_NAME = "Anuri"; // Change this to her name
-const CORRECT_NUMBER = 7; // Change this to her favorite number (1-10)
+const CORRECT_NUMBER = 1; // Change this to her favorite number (1-10)
+const BUS_ROUTE = 138 // Change this to her favorite number (1-10) 
 
 /* Countdown Lock (Set to a future date to lock the app) */
-const UNLOCK_DATE = "2026-04-03T13:42:00"; // format: YYYY-MM-DDTHH:mm:ss
+const UNLOCK_DATE = "2026-04-04T02:25:00"; // format: YYYY-MM-DDTHH:mm:ss
 
 /* Optional: Add image URLs or local paths to these stages if you want a picture to appear! */
 const STAGE_IMAGES = {
@@ -63,15 +64,15 @@ const bgAnimContainer = document.getElementById('bg-anim');
 
 // Stages Data
 const stages = [
-    { id: 1, type: 'tapHeart', instruction: 'Tap the floating heart to begin', successMsg: 'You started my heart too. 🤍' },
-    { id: 2, type: 'guessNumber', instruction: `I'm thinking of a number... it's your favorite number.`, successMsg: 'You know me too well. ✨' },
-    { id: 3, type: 'typeName', instruction: 'Type my name to unlock this memory:', successMsg: 'Memory unlocked! 🔒🔓' },
+    { id: 1, type: 'tapHeart', instruction: 'Tap the floating Atom to begin', successMsg: 'The Biththaraya. 🤍' },
+    { id: 2, type: 'guessNumber', instruction: `Type your favorite number.`, successMsg: 'I know you well homie !. ✨' },
+    { id: 3, type: 'typeName', instruction: 'Type the bus route number that we took together first', successMsg: 'Memory unlocked! 🔒🔓' },
     { id: 4, type: 'holdButton', instruction: 'Press and hold for 3 seconds... like waiting for your reply', successMsg: 'Worth the wait. ⏳' },
-    { id: 5, type: 'findDifference', instruction: 'Find what\'s different... just like how you stand out to me', successMsg: 'You notice everything about me too? 🥺' },
-    { id: 6, type: 'slideUnlock', instruction: 'Slide to reveal the truth →', successMsg: 'I\'ve liked you for a long time. 💘' },
-    { id: 7, type: 'matchVibe', instruction: 'Match the emoji to how I feel about you', successMsg: 'Exactly right. 🥰' },
-    { id: 8, type: 'shakeOrTap', instruction: 'Shake your phone gently OR click fast (10 times)', successMsg: 'You make my heart race too. 💓' },
-    { id: 9, type: 'drawStar', instruction: 'Draw a star anywhere on this box (or tap 5 points)', successMsg: 'You\'re a star. ⭐' },
+    { id: 5, type: 'findDifference', instruction: 'Find what\'s different... just like how you stand out to me', successMsg: 'You notice everything huh? ' },
+    { id: 6, type: 'slideUnlock', instruction: 'Slide to reveal the truth →', successMsg: 'Im taller than you, but you still scare me sometimes. 😅' },
+    { id: 7, type: 'matchVibe', instruction: 'Match the emoji to how I feel about you', successMsg: 'Meka boruwata damme !!!!!!!!' },
+    { id: 8, type: 'shakeOrTap', instruction: 'Shake your phone gently OR click fast (10 times)', successMsg: 'Hi Batch top !' },
+    { id: 9, type: 'drawStar', instruction: 'Draw a star anywhere on this box (or tap 5 points)', successMsg: 'You\'re a star my friend. ⭐' },
     { id: 10, type: 'final', instruction: '', successMsg: '' }
 ];
 
@@ -242,7 +243,7 @@ function unlockStage(stage) {
 function shakeError() {
     mainCard.classList.add('shake');
     setTimeout(() => mainCard.classList.remove('shake'), 400);
-    feedbackText.innerText = "Try again, cutie 💕";
+    feedbackText.innerText = "Try again, 💕";
     feedbackText.style.opacity = 1;
     setTimeout(() => feedbackText.style.opacity = 0, 2000);
 }
@@ -330,11 +331,12 @@ function initGuessNumber(stage) {
 // Stage 3
 function initTypeName(stage) {
     const input = document.createElement('input');
-    input.type = 'text';
+    input.type = 'number';
     input.className = 'name-input';
-    input.placeholder = 'Type name here';
+    input.placeholder = 'Type bus route here';
     input.addEventListener('input', (e) => {
-        if (e.target.value.toLowerCase().trim() === MY_NAME.toLowerCase()) {
+        // Convert both to number or both to string for comparison
+        if (parseInt(e.target.value) === BUS_ROUTE) {
             input.disabled = true;
             input.style.borderColor = 'var(--success)';
             unlockStage(stage);
