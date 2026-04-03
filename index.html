@@ -12,8 +12,12 @@
 <body>
     <div class="dynamic-bg-image" id="dynamic-bg"></div>
     <div class="background-animation" id="bg-anim"></div>
-    <div class="story-phrase-left" id="story-phrase-left"></div>
-    <div class="story-phrase-right" id="story-phrase-right"></div>
+    <div class="modal-overlay" id="phrase-modal">
+        <div class="modal-content old-letter-content">
+            <div class="old-letter-text" id="phrase-text"></div>
+            <button class="btn letter-btn" id="btn-phrase-close" style="margin-top: 30px;">Continue ✨</button>
+        </div>
+    </div>
     
     <div class="countdown-container glass-card" id="countdown-card" style="display: none;">
         <h1 class="celebration-title">Almost There...</h1>
@@ -25,7 +29,7 @@
 
     <div class="app-container" id="app-container">
         <header class="top-bar">
-            <span class="stage-indicator" id="stage-indicator">1 / 10</span>
+            <span class="stage-indicator" id="stage-indicator" hidden>1 / 10</span>
             <div class="progress-container">
                 <div class="progress-bar" id="progress-bar"></div>
             </div>

@@ -8,35 +8,39 @@ const UNLOCK_DATE = "2026-04-03T13:42:00"; // format: YYYY-MM-DDTHH:mm:ss
 
 /* Optional: Add image URLs or local paths to these stages if you want a picture to appear! */
 const STAGE_IMAGES = {
-    1: "01.jpg", // example: "images/pic1.jpg"
-    2: "02.jpg",
-    3: "03.jpg", // Stage 3 unlocks a memory
-    4: "04.jpg",
-    5: "05.jpg",
-    6: "01.jpg",
-    7: "02.jpg",
-    8: "03.jpg",
-    9: "04.jpg"
+    1: "A1.jpeg", // example: "images/pic1.jpg"
+    2: "A2.jpeg",
+    3: "A3.jpeg", // Stage 3 unlocks a memory
+    4: "A4.jpeg",
+    5: "A5.jpeg",
+    6: "A6.jpeg",
+    7: "A7.jpeg",
+    8: "A8.jpeg",
+    9: "A9.jpeg"
 };
 
 /* Optional: Add longer phrases, memories, or stories to appear when she completes a stage */
 const STAGE_PHRASES = {
-    1: ["I still remember", "the first time our eyes met..."],
-    2: ["You've always been", "the magic number to my life."],
-    3: ["Just hearing your name", "makes me smile like an idiot."],
-    4: ["I'd wait a lifetime", "just for you."],
-    5: ["It's the little things", "that make me fall for you."],
-    6: ["No matter where I look,", "everything leads back to you."],
-    7: ["My absolute favorite vibe", "is simply being around you."],
-    8: ["You make my heart race", "without even trying."],
-    9: ["In a sky full of stars,", "you shine the brightest."]
+    1: ["I still remember", "the first time we met near the college washrooms — an unlikely start to something beautiful."],
+    2: ["Thank you", "for being that wonderfully annoying, irreplaceable friend for the past two months."],
+    3: ["Thank you", "for every effort you've poured into this friendship of ours."],
+    4: ["Thank you", "just for being you — raw, real, and enough."],
+    5: ["Thank you", "for understanding that you matter not just to me, but to this world too."],
+    6: ["Thank you", "for being that perfectly imperfect friend who drives me crazy in the best way."],
+    7: ["Thank you", "for every unsolicited but needed advice that somehow always makes sense."],
+    8: ["Thank you", "for being that amazing and annoying friend I never knew I needed."],
+    9: ["In a sky full of stars,", "shine brightly —the world needs your light."]
 };
 
 const LONG_LETTER = `Dear ${HER_NAME}, <br><br>
-Happy Birthday! You have always been such a special person in my life. Every moment spent with you feels like magic. <br><br>
-I just wanted to remind you today how incredible you are, how much you mean to me, and how my world is so much brighter with you in it.<br><br>
-Thank you for being you.<br><br>
-Yours,<br>${MY_NAME}`;
+Happy Birthday. <br><br>
+Some friendships begin with a spark. Ours began near the college washrooms — and isn't that just so perfectly us? <br><br>
+In just two short months, you've managed to become the chaos in my calm, the laughter in my silence, and the voice that tells me things I don't want to hear — but desperately need to. <br><br>
+You are the kind of friend who doesn't just walk beside you — you pull us forward when we forget how to move. You care in ways that go unnoticed, guide in ways that feel effortless, and annoy in ways that somehow feel like love. <br><br>
+So today, I don't just wish you happiness. I wish you the world — because you've given a piece of yours to all of us. <br><br>
+Thank you for being the annoying, amazing, beautifully broken star that you are. <br><br>
+Keep shining, <br>
+${MY_NAME}`;
 /* --------------------- */
 
 // State
@@ -179,6 +183,19 @@ function startApp() {
     modalOverlay.addEventListener('click', () => {
         modalOverlay.classList.remove('active');
     });
+
+    const phraseModal = document.getElementById('phrase-modal');
+    const btnPhraseClose = document.getElementById('btn-phrase-close');
+    if (phraseModal && btnPhraseClose) {
+        btnPhraseClose.addEventListener('click', () => {
+            phraseModal.classList.remove('active');
+        });
+        phraseModal.addEventListener('click', (e) => {
+            if (e.target === phraseModal) {
+                phraseModal.classList.remove('active');
+            }
+        });
+    }
 }
 
 function animateCardTransition(callback) {
@@ -209,19 +226,16 @@ function unlockStage(stage) {
         }
     }
 
-    // Show custom phrases on left and right sides
-    const leftEl = document.getElementById('story-phrase-left');
-    const rightEl = document.getElementById('story-phrase-right');
-    if (leftEl && rightEl && STAGE_PHRASES[stage.id]) {
+    // Show custom phrases in popup
+    const phraseModal = document.getElementById('phrase-modal');
+    const phraseText = document.getElementById('phrase-text');
+    if (phraseModal && phraseText && STAGE_PHRASES[stage.id]) {
         if (Array.isArray(STAGE_PHRASES[stage.id])) {
-            leftEl.innerText = STAGE_PHRASES[stage.id][0] || "";
-            rightEl.innerText = STAGE_PHRASES[stage.id][1] || "";
+            phraseText.innerHTML = (STAGE_PHRASES[stage.id][0] || "") + "<br><br>" + (STAGE_PHRASES[stage.id][1] || "");
         } else {
-            leftEl.innerText = STAGE_PHRASES[stage.id];
-            rightEl.innerText = "";
+            phraseText.innerHTML = STAGE_PHRASES[stage.id];
         }
-        leftEl.style.display = 'block';
-        rightEl.style.display = 'block';
+        phraseModal.classList.add('active');
     }
 }
 
@@ -241,11 +255,9 @@ function loadStage(stageNum) {
     interactiveArea.innerHTML = '';
     feedbackText.style.opacity = 0;
 
-    // Hide custom phrases
-    const leftEl = document.getElementById('story-phrase-left');
-    const rightEl = document.getElementById('story-phrase-right');
-    if (leftEl) { leftEl.style.display = 'none'; leftEl.innerText = ''; }
-    if (rightEl) { rightEl.style.display = 'none'; rightEl.innerText = ''; }
+    // Ensure phrase modal is hidden
+    const phraseModal = document.getElementById('phrase-modal');
+    if (phraseModal) { phraseModal.classList.remove('active'); }
 
     // Fade out previous background image if showing
     const bgImg = document.getElementById('dynamic-bg');
