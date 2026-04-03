@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>10 Touches to Your Heart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dynamic-bg-image" id="dynamic-bg"></div>
+    <div class="background-animation" id="bg-anim"></div>
+    <div class="story-phrase-left" id="story-phrase-left"></div>
+    <div class="story-phrase-right" id="story-phrase-right"></div>
+    
+    <div class="countdown-container glass-card" id="countdown-card" style="display: none;">
+        <h1 class="celebration-title">Almost There...</h1>
+        <p class="instruction">I have something special for you, but you have to wait for your big day!</p>
+        <div class="countdown-timer" id="countdown-timer">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <div class="app-container" id="app-container">
+        <header class="top-bar">
+            <span class="stage-indicator" id="stage-indicator">1 / 10</span>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </header>
+
+        <main class="glass-card" id="main-card">
+            <h1 class="instruction" id="instruction">Loading...</h1>
+            <div class="interactive-area" id="interactive-area">
+                <!-- Dynamic content loads here -->
+            </div>
+            
+            <p class="feedback-text" id="feedback-text"></p>
+            
+            <div class="controls">
+                <button class="btn btn-secondary" id="btn-back" disabled>Back</button>
+                <button class="btn btn-primary hidden" id="btn-next">Next</button>
+            </div>
+        </main>
+    </div>
+    
+    <div class="modal-overlay" id="wish-modal">
+        <div class="modal-content">
+            <div class="modal-text">I wish you knew how much you mean to me. ✨</div>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-acoustic-guitar-2422.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
