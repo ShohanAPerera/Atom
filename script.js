@@ -5,7 +5,7 @@ const CORRECT_NUMBER = 1; // Change this to her favorite number (1-10)
 const BUS_ROUTE = 138 // Change this to her favorite number (1-10) 
 
 /* Countdown Lock (Set to a future date to lock the app) */
-const UNLOCK_DATE = "2026-04-04T02:25:00"; // format: YYYY-MM-DDTHH:mm:ss
+const UNLOCK_DATE = "2026-04-04T03:06:00"; // format: YYYY-MM-DDTHH:mm:ss
 
 /* Optional: Add image URLs or local paths to these stages if you want a picture to appear! */
 const STAGE_IMAGES = {
