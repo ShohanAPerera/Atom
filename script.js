@@ -294,7 +294,7 @@ function loadStage(stageNum) {
 function initTapHeart(stage) {
     const heart = document.createElement('div');
     heart.className = 'heart-target';
-    heart.innerHTML = '❤️';
+    heart.innerHTML = '⚛️';
     heart.addEventListener('click', () => {
         unlockStage(stage);
         heart.style.animation = 'none';
