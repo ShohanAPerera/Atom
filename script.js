@@ -5,7 +5,7 @@ const CORRECT_NUMBER = 1; // Change this to her favorite number (1-10)
 const BUS_ROUTE = 138 // Change this to her favorite number (1-10) 
 
 /* Countdown Lock (Set to a future date to lock the app) */
-const UNLOCK_DATE = "2026-04-04T03:08:00"; // format: YYYY-MM-DDTHH:mm:ss
+const UNLOCK_DATE = "2026-04-04T03:25:00"; // format: YYYY-MM-DDTHH:mm:ss
 
 /* Optional: Add image URLs or local paths to these stages if you want a picture to appear! */
 const STAGE_IMAGES = {
@@ -686,7 +686,7 @@ function initFinal() {
 
     const musicBtn = document.createElement('button');
     musicBtn.className = 'btn btn-play-music';
-    musicBtn.innerText = '🎵 Play Birthday Song';
+    musicBtn.innerText = '';
     musicBtn.onclick = () => {
         if (bgMusic.paused) {
             bgMusic.play();
@@ -718,7 +718,7 @@ function initFinal() {
     title.addEventListener('click', () => {
         taps++;
         if (taps === 2) {
-            alert('Secret unlocked: I really really like you! 💖');
+            alert('Secret unlocked: I wish you knew how your existence quietly rewired my world.How your laughter lingers like an echo I never want to stop hearing.I wish you knew that even on your worst days, youre still magic to someone. To me .I just wish you knew.');
             taps = 0;
         }
         setTimeout(() => taps = 0, 500);
